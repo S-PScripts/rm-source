@@ -1,0 +1,28 @@
+{
+  "extensionName": "RM SafetyNet Go",
+  "baseAPIURL": "https://device-api-live01.sn.ifl.net",
+  "sendHistoryInterval": 60000,
+  "cacheCheckForExpiredInterval": 60000,
+  "cacheExpiryTimeInMinutes": 10,
+  "whitelistUpdateInterval": 600000,
+  "googleApiTimeout": 10000,
+  "BuzzFilteringEnabledTypes": ["main_frame", "sub_frame"],
+  "errorPageLocation": "views/errors/device-filter-error.htm",
+  "filterPageLocation": "views/errors/default-filter-page.htm",
+  "initPageLocation": "views/init/device-init-page.htm",
+  "filterPageServerURL": "http://fp.sn.ifl.net/*",
+  "homePage":"https://www.google.co.uk/",
+  "contentFilter": {
+    "banThreshold": 100,
+    "maxNumberOfWorkers": 4,
+    "enablePageObservations": true,
+    "pageOvservationsDebounce": 2000
+  },
+  "updateUrl": "https://safetynet-chrome-extension.azureedge.net/auto-update.xml",
+  "oauth2": {
+    "client_id": "754552397156-88n1cifmfkk4hjg97314cmsln76ufumu.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+    ]
+  }
+}

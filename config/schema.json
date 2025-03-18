@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+        "ChromeOSOnly": {
+            "title": "Enables SafetNet Go on other platforms",
+            "description": "Flag to indicate whether SafetNet Go should run on platforms other than Chrome OS",
+            "type": "boolean"
+        }
+    }
+}
