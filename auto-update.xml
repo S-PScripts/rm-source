@@ -1,0 +1,5 @@
+<gupdate xmlns="http://www.google.com/update2/response" protocol="2.0">
+<app appid="kmhjojemanablihnkjnnikokobgahlea">
+<updatecheck codebase="https://safetynet-chrome-extension.azureedge.net/SafetyNetChromeExtension.crx" version="2.1.9"/>
+</app>
+</gupdate>
