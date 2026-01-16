@@ -1,61 +1,79 @@
 {
-  "action": {
-    "default_popup": "popup.html",
-    "default_title": "Click to view a popup"
-  },
+  "version": "2.1.9",
+  "name": "RM SafetyNet Go",
+  "description": "RM SafetyNet Go is cloud-based internet filtering software that protects your students both in-school and at home.",
+  "permissions": [
+    "webRequest",
+    "storage",
+    "unlimitedStorage",
+    "webRequestBlocking",
+    "identity",
+    "identity.email",
+    "<all_urls>",
+    "tabs"
+  ],
   "background": {
-    "service_worker": "service-worker.js",
-    "type": "module"
+    "scripts": [
+      "background/background.js",
+      "background/apiHelper.js",
+      "background/requestTypeAnalyser.js",
+      "background/urlFilter.js",
+      "background/contentFilterManager.js",
+      "background/filterPageManager.js",
+      "background/localCacheManager.js",
+      "background/errorManager.js",
+      "background/whitelistManager.js",
+      "background/main.js",
+      "tests/e2e/e2eTestHelper.js"
+    ],
+    "pages": [
+      "tests/index.html"
+    ],
+    "persistent": true
   },
   "content_scripts": [
     {
-      "all_frames": true,
-      "js": [
-        "contentScriptWrapper.js"
-      ],
       "matches": [
-        "\u003Call_urls\u003E"
+        "http://*/*",
+        "https://*/*"
       ],
-      "run_at": "document_start",
-      "type": "module"
+      "exclude_globs": [
+        "*.pdf"
+      ],
+      "js": [
+        "content/pageReader.js",
+        "content/contentFilter.js"
+      ],
+      "run_at": "document_start"
     }
   ],
-  "description": "SafetyNet GO Filter",
-  "host_permissions": [
-    "http://*/*",
-    "https://*/*"
+  "web_accessible_resources": [
+    "views/init/*"
   ],
   "icons": {
-    "128": "resources/icons/icon128.png",
     "16": "resources/icons/icon16.png",
     "19": "resources/icons/icon19.png",
     "32": "resources/icons/icon32.png",
     "38": "resources/icons/icon38.png",
-    "48": "resources/icons/icon48.png"
+    "48": "resources/icons/icon48.png",
+    "128": "resources/icons/icon128.png"
   },
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0dFc3+ftIavVdV+BzM0CrECA+kL06AxhGTyoQGxhuwjr47PblwMLiwsKJ9PT3ZbGw0Wj/AAk0I392JGkUDS6tcc+WvHBLP+A8vT8nFn+itnFAmxWPNTQgFmDu9jXWwU6DvzXPyxpKoFDYKOmQgPrva/MNEihPdSWOKkJ9QYh9VU2nD7dnrfUfT/+hjqnB2vI33pFpytT6C33tpZsYCvko3zv0wHXDVl7s4Siuz0wWRhrqqyyjAESSYq8sW0JXvYTacPbkHS0hQarhriDoowGCJ/H4fXiDpQ6hNNgDLgWraBzqT3BLZ+Av3v8sJgD9KlihbMzN0KciHZP07Qq+Y6twwIDAQAB",
-  "manifest_version": 3,
-  "name": "SafetyNet GO",
-  "permissions": [
-    "webRequest",
-    "webRequestBlocking",
-    "alarms",
-    "storage",
-    "unlimitedStorage",
-    "tabs",
-    "identity",
-    "identity.email"
-  ],
-  "update_url": "https://clients2.google.com/service/update2/crx",
-  "version": "3.1.0",
-  "web_accessible_resources": [
-    {
-      "matches": [
-        "\u003Call_urls\u003E"
-      ],
-      "resources": [
-        "config/envconfig.json"
-      ]
-    }
-  ]
+  "browser_action": {
+    "default_icon": {
+      "19": "resources/icons/icon19.png",
+      "38": "resources/icons/icon38.png"
+    },
+    "default_popup": "popup/browser_action_popup.html"
+  },
+  "manifest_version": 2,
+  "update_url": "https://safetynet-chrome-extension.azureedge.net/auto-update.xml",
+  "oauth2": {
+    "client_id": "754552397156-88n1cifmfkk4hjg97314cmsln76ufumu.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+    ]
+  },
+  "storage": {
+    "managed_schema": "config/schema.json"
+  }
 }
